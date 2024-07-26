@@ -2,7 +2,7 @@
 
 const MyEnrollClass = () => {
     return (
-        <div>
+        <div className="">
             <h1>MyEnrollClass page</h1>
         </div>
     );
