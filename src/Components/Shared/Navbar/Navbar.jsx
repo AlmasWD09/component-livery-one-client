@@ -1,150 +1,130 @@
-import Container from '../Container'
-import { AiOutlineMenu } from 'react-icons/ai'
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import useAuth from '../../../hooks/useAuth';
-// import avatarImg from '../../../assets/images/placeholder.jpg'
-// import HostModal from '../../Modal/HostRequestModal'
+import { useState } from "react";
+import { IoMdClose } from "react-icons/io";
+import { TiThMenu } from "react-icons/ti";
+import { Link, NavLink } from "react-router-dom";
+import Button from "./Button";
 
 
 const Navbar = () => {
-    // const axiosSecure = useAxiosSecure()
-    const { user, logOut } = useAuth()
-    const [isOpen, setIsOpen] = useState(false)
-  
-    // for modal
-    const [isModalOpen, setIsModalOpen] = useState(false)
-    const closeModal = () => {
-      setIsModalOpen(false)
-    }
-    // const modalHandler = async () => {
-    //   console.log('I want to be a host')
-    //   try {
-    //     const currentUser = {
-    //       email: user?.email,
-    //       role: 'guest',
-    //       status: 'Requested',
-    //     }
-    //     const { data } = await axiosSecure.put(`/user`, currentUser)
-    //     console.log(data)
-    //     if (data.modifiedCount > 0) {
-    //       toast.success('Success! Please wait for admin confirmation')
-    //     } else {
-    //       toast.success('Please!, Wait for admin approval👊')
-    //     }
-    //   } catch (err) {
-    //     console.log(err)
-    //     toast.error(err.message)
-    //   } finally {
-    //     closeModal()
-    //   }
-    // }
+    const [isOpen, setIsOpen] = useState(false);
     return (
-        <>
-            <div className='fixed w-full bg-white z-10 shadow-sm'>
-                <div className='py-4 border-b-[1px]'>
-                    <Container>
-                        <div className='flex flex-row  items-center justify-between gap-3 md:gap-0'>
-                            {/* Logo */}
-                            <Link to='/'>
-                                <img
-                                    // className='hidden md:block'
-                                    src='https://i.ibb.co/4ZXzmq5/logo.png'
-                                    alt='logo'
-                                    width='100'
-                                    height='100'
-                                />
+        <div className=' bg-white z-10 shadow-sm'>
+            <div className=" px-6 py-4   dark:bg-slate-800">
+                <div className="lg:flex lg:items-center lg:justify-between">
+                    <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                            <Link to='/' className="flex items-center">
+                                <img src={"icon"} alt="" />
+                                <h2 className="text-2xl font-bold">Project<span className="text-primary">Name</span></h2>
                             </Link>
-                            {/* Dropdown Menu */}
-                            <div className='relative'>
-                                <div className='flex flex-row items-center gap-3'>
-                                    {/* Become A Host btn */}
-                                    <div className='hidden md:block'>
-                                        {/* {!user && ( */}
-                                        <button
-                                            // disabled={!user}
-                                            onClick={() => setIsModalOpen(true)}
-                                            className='disabled:cursor-not-allowed cursor-pointer hover:bg-neutral-100 py-3 px-4 text-sm font-semibold rounded-full  transition'
-                                        >
-                                            Host your home
-                                        </button>
-                                        {/* )} */}
-                                    </div>
-                                    {/* Modal */}
-                                    {/* <HostModal
-                                        isOpen={isModalOpen}
-                                        closeModal={closeModal}
-                                        // modalHandler={modalHandler}
-                                    /> */}
-                                    {/* Dropdown btn */}
-                                    <div
-                                        onClick={() => setIsOpen(!isOpen)}
-                                        className='p-4 md:py-1 md:px-2 border-[1px] border-neutral-200 flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition'
-                                    >
-                                        <AiOutlineMenu />
-                                        <div className='hidden md:block'>
-                                            {/* Avatar */}
-                                            <img
-                                                className='rounded-full'
-                                                referrerPolicy='no-referrer'
-                                                // src={user && user.photoURL ? user.photoURL : avatarImg}
-                                                alt='profile'
-                                                height='30'
-                                                width='30'
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-                                {isOpen && (
-                                    <div className='absolute rounded-xl shadow-md w-[40vw] md:w-[10vw] bg-white overflow-hidden right-0 top-12 text-sm'>
-                                        <div className='flex flex-col cursor-pointer'>
-                                            <Link
-                                                to='/'
-                                                className='block md:hidden px-4 py-3 hover:bg-neutral-100 transition font-semibold'
-                                            >
-                                                Home
-                                            </Link>
-
-                                            {user ? (
-                                                <>
-                                                    <Link
-                                                        to='/dashboard'
-                                                        className='block px-4 py-3 hover:bg-neutral-100 transition font-semibold'
-                                                    >
-                                                        Dashboard
-                                                    </Link>
-                                                    <div
-                                                        onClick={logOut}
-                                                        className='px-4 py-3 hover:bg-neutral-100 transition font-semibold cursor-pointer'
-                                                    >
-                                                        Logout
-                                                    </div>
-                                                </>
-                                            ) : (
-                                                <>
-                                                    <Link
-                                                        to='/log-in'
-                                                        className='px-4 py-3 hover:bg-neutral-100 transition font-semibold'
-                                                    >
-                                                        Login
-                                                    </Link>
-                                                    <Link
-                                                        to='/sign-up'
-                                                        className='px-4 py-3 hover:bg-neutral-100 transition font-semibold'
-                                                    >
-                                                        Sign Up
-                                                    </Link>
-                                                </>
-                                            )}
-                                        </div>
-                                    </div>
-                                )}
-                            </div>
                         </div>
-                    </Container>
+
+                        {/* Mobile menu button */}
+                        <div className="flex lg:hidden">
+                            <button
+                                onClick={() => setIsOpen(!isOpen)}
+                                type="button"
+                                className="text-gray-500 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400 focus:outline-none focus:text-gray-600 dark:focus:text-gray-400"
+                                aria-label="toggle menu"
+                            >
+                                {!isOpen ? (
+                                    <TiThMenu className="text-2xl " />
+                                ) : (
+                                    <IoMdClose className="text-2xl " />
+                                )}
+                            </button>
+                        </div>
+                    </div>
+
+                        {/* Mobile Menu open: "block", Menu closed: "hidden" */}
+                <div className={`absolute flex flex-col lg:hidden bg-gray-100 w-[89%] z-20 transition-all duration-300 ease-in-out 
+                 ${isOpen ? 'translate-x-8 opacity-100' : 'opacity-0 -translate-x-full'
+                        }`}
+                >
+                    <div className="">
+                    <NavLink
+                        to='/dashboard/my-enroll-class'
+                        className={({ isActive }) =>
+                            ` flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'}`}>
+                        <FaHome className='w-5 h-5' />
+                        <span className='mx-4 font-medium'>My Enroll Class</span>
+                    </NavLink>
+                    <NavLink
+                        to='/dashboard/add-class'
+                        className={({ isActive }) =>
+                            `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'}`}>
+                        <FaHome className='w-5 h-5' />
+                        <span className='mx-4 font-medium'>Add Class</span>
+                    </NavLink>
+                     {/* user---> Home/Profile/Logout menu */}
+                     <div className="">
+                        <hr />
+
+                        {/* Home Menu */}
+                        <NavLink
+                        to='/'
+                        className={({ isActive }) =>
+                            `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
+                            }`
+                        }
+                    >
+                        <FaHome className='w-5 h-5' />
+
+                        <span className='mx-4 font-medium'>Home</span>
+                    </NavLink>
+
+                        {/* profile menu */}
+                        {
+                            role === 'student' ? <NavLink
+                                to='/dashboard/profile'
+                                className={({ isActive }) =>
+                                    `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
+                                    }`
+                                }
+                            >
+                                <FcSettings className='w-5 h-5' />
+
+                                <span className='mx-4 font-medium'>Profile</span>
+                            </NavLink>
+                                :
+                                ''
+                        }
+
+                        <NavLink to='/login'>
+                            <button
+                                className='flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform'
+                            >
+                                <GrLogout className='w-5 h-5' />
+
+                                <span className='mx-4 font-medium'>Logout</span>
+                            </button>
+                        </NavLink>
+                    </div>
+                    </div>
+                    
+                </div>
+
+
+
+
+                    {/* Large Device for */}
+                    <div className="hidden  lg:flex">
+                        <a href="#" className="hover:text-primary">
+                            <Button text={"Home"} />
+                        </a>
+                        <a href="#" className="hover:text-primary">
+                            <Button text={"About"} />
+                        </a>
+                        <a href="#" className="hover:text-primary">
+                            <Button text={"Protfolio"} />
+                        </a>
+                        <a href="#" className="hover:text-primary">
+                            <Button text={"Blogs"} />
+                        </a>
+                    </div>
                 </div>
             </div>
-        </>
+        </div>
     );
 };
 
