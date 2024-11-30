@@ -10,8 +10,8 @@ const FooterOne = () => {
     style={{
       backgroundImage:
         "url(https://i.ibb.co/0fSRFcV/6dc8aa29772cd31c5ca7b0c5e1978bdb.png)",
-    }}
-  >
+    }}>
+
     {/* Overlay */}
     <div className="absolute inset-0 bg-[#1F509A] bg-opacity-90"></div>
     
@@ -23,7 +23,7 @@ const FooterOne = () => {
           
           <p className="text-white lg:mt-14 lg:w-[346px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eu arcu enim. Nunc turpis est, placerat a porta rutrum, aliquam a magna. Phasellus ac molestie urna.</p>
         </div>
-        <div className="mt-5 font-medium text-white text-center">
+        <div className="mt-5 font-medium text-white/55 text-center">
         <h3 className="font-bold mb-5">Company</h3>
           <div className="grid grid-cols-2  md:grid-cols-1 gap-2">
           <p>Home</p>
